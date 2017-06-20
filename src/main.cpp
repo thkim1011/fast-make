@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 
     bool pass = false;
 
-    for (int i = 0; i < argc; i++)
+    for (int i = 1; i < argc; i++)
     {
         if (pass) {
             pass = false;
@@ -103,14 +103,29 @@ int main(int argc, char **argv)
         }
     }
 
+	// Reformat Directories
+	formatDirectory(srcDir);
+	formatDirectory(includeDir);
+	formatDirectory(buildDir);
+	formatDirectory(binDir);
+
     // Set up variables
     ofstream makefile ("./Makefile");
+
     addVariable(makefile, "SRC_DIR", srcDir);
     addVariable(makefile, "INCLUDE_DIR", includeDir);
     addVariable(makefile, "BUILD_DIR", buildDir);
     addVariable(makefile, "BIN_DIR", binDir);
 
     makefile << endl;
+
+	addLink(makefile, srcFileNames, out);
     
+	makefile << endl;
+
+	for (auto i = srcFileNames.begin(); i != srcFileNames.end(); i++) {
+		addCompile(makefile, *i, srcDir);
+	}
+	
     return 0;
 }
