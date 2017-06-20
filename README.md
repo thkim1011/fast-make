@@ -1,7 +1,7 @@
 # Fast Make 
 
 ## Quick Note
-As of right now, fastmake will look for files in the src directory so you can't run things like `fastmake src/*.cpp -o program`. 
+As of right now, fastmake will look for files in the src directory so you can't run things like `fastmake src/*.cpp -o program`. This is possible though if you set your source directory to the current directory, so `fastmake src/*.cpp -s . -o program`. I'll see what I'll do about this issue in the next release. However, most people are probably going to write a bash script containing the fastmake command, so it's best to simply list out all the source files. 
 
 ## Intro
 GNU Make is pretty nice, but writing makefile is a pain, so use Fast Make to generate a Makefile with one command. 
